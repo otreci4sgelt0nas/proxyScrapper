@@ -7,7 +7,7 @@ RED = '\033[91m'
 RESET = '\033[0m'
 
 def test_proxy(proxy):
-    url = 'http://google.com'  
+    url = 'http://www.google.com'  
     proxies = {
         'http': f'http://{proxy}',
         'https': f'https://{proxy}'
@@ -43,9 +43,15 @@ def scrape_proxies(url):
 
     return proxy_list
 
-url = 'https://www.sslproxies.org'
-proxies = scrape_proxies(url)
+urls = [
+    'https://www.sslproxies.org',
+    'https://www.proxy-list.download',
+    'https://free-proxy-list.net'
+    
+]
 
-
-for proxy in proxies:
-    test_proxy(proxy)
+for url in urls:
+    proxies = scrape_proxies(url)
+    
+    for proxy in proxies:
+        test_proxy(proxy)
